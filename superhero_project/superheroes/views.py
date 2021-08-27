@@ -46,3 +46,6 @@ def edit(request, hero_id):
             'single_hero': single_hero
         }
         return render(request, 'superheroes/edit.html', context)
+
+def delete(request):
+    pass
