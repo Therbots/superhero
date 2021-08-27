@@ -47,5 +47,13 @@ def edit(request, hero_id):
         }
         return render(request, 'superheroes/edit.html', context)
 
-def delete(request):
-    pass
+def delete(request, hero_id):
+    single_hero = Superhero.objects.get(pk=hero_id)
+    if request.method == 'POST':
+        single_hero.delete()
+        return HttpResponseRedirect(reverse('superheroes:index'))
+    else:
+        context = {
+            'single_hero': single_hero
+        }
+        return render(request, 'superheroes/delete.html', context)
